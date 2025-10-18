@@ -7,10 +7,12 @@ class BookmarksController < ApplicationController
 
   def new
     @bookmark = @list.bookmarks.new
+    @movies = Movie.all
   end
 
   def create
     @bookmark = @list.bookmarks.new(bookmark_params)
+    @movies = Movie.all
     if @bookmark.save
       redirect_to @list
     else

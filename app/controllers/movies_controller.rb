@@ -20,10 +20,17 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
   end
 
+  def edit
+    @movie = Movie.find(params[:id])
+  end
+
   def update
     @movie = Movie.find(params[:id])
-    @movie.update(movie_params)
-    redirect_to movie_path(@movie)
+    if @movie.update(movie_params)
+      redirect_to movie_path(@movie)
+    else
+      render :edit
+    end
   end
 
   def delete
