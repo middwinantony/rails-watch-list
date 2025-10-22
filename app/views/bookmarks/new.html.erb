@@ -1,15 +1,14 @@
-<h1>Add Movie to <%= @list.name %></h1>
-
-<%= form_with model: [@list, @bookmark], local: true do |form| %>
-  <div class="mb-3">
-    <%= form.label :movie_id, "Select Movie" %>
-    <%= form.collection_select :movie_id, @movies, :id, :title, prompt: "Choose a movie", class: "form-select" %>
+<div class="container py-5">
+  <div class="row">
+    <div class="col-12 col-md-6 offset-lg-3">
+      <div class="bg-white rounded p-3 shadow">
+        <h3>Add a movie to your <%= @list.name %> list</h3>
+        <%= simple_form_for [@list, @bookmark] do |f| %>
+          <%= f.input :comment, placeholder: "Enter a comment about the movie" %>
+          <%= f.association :movie, prompt: "Select a movie", input_html: {data: {controller: "tom-select"}} %>
+          <%= f.submit class: "btn btn-flat" %>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-  <div class="mb-3">
-    <%= form.label :comment %>
-    <%= form.text_field :comment, class: "form-control" %>
-  </div>
-
-  <%= form.submit "Add Movie", class: "btn btn-primary" %>
-<% end %>
+</div>
