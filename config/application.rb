@@ -12,7 +12,7 @@ require "action_mailer/railtie"
 require "action_text/engine"
 require "action_view/railtie"
 require "action_cable/engine"
-require 'dotenv/load'
+require 'dotenv/load' if ['development', 'test'].include?(Rails.env)
 
 # require "rails/test_unit/railtie"
 
